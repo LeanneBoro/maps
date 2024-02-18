@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" href="css/main.css" />
+		<title>Car Sham Bahutz</title>
+	</head>
+
+	<body onload="onInit()">
+		<h1>Cars CRUDL with MVC</h1>
+
+		<section class="car-filter">
+			<fieldset>
+                <legend>Filter & Sorting</legend>
+
+                <div class="filter-by">
+                    <select class="vendor-list" onchange="onSetFilterBy({vendor: this.value})">
+                        <option value="">Select vendor</option>
+                        <option>audu</option>
+                        <option>fiak</option>
+                        <option>subali</option>
+                        <option>mitsu</option>
+                    </select>
+                    
+                    <label>
+                        <span>Min Speed:</span>
+                        <input type="range" min="0" max="300" value="50" 
+                               onchange="this.title=this.value;onSetFilterBy({minSpeed: +this.value})" />
+                    </label>
+                </div>
+                
+                <div class="sort-by">
+                    <select onchange="onSetSortBy()">
+                        <option value="">Select Sorting</option>
+                        <option value="vendor">By Vendor</option>
+                        <option value="maxSpeed">Speed</option>
+                    </select>
+                    <label>
+                        <span>Descending</span>
+                        <input class="sort-desc" type="checkbox" oninput="onSetSortBy()" />
+                    </label>
+                </div>
+            </fieldset> 
+
+		</section>
+
+		<section>
+            <div class="actions">
+                <button title="Add Car" onclick="onAddCar()">Add Car</button>
+                <button title="Next Page" onclick="onNextPage()">Next Page</button>
+            </div>
+			<section class="cars-container"></section>
+		</section>
+
+		<dialog class="modal">
+			<h3></h3>
+			<h4>Maximal Speeding <span></span> </h4>
+            <img src="" alt="">
+			<p></p>
+			<button onclick="onCloseModal()">Close</button>
+		</dialog>
+
+        <dialog class="car-edit-modal">
+            <form onsubmit="onSaveCar()" method="dialog">
+                <h2>Add Car</h2>
+                <img src="" alt="">
+                <select class="vendor-list" onchange="onSelectVendor(this)">
+                    <option value="">Choose vendor...</option>
+                    <option>audu</option>
+                    <option>mitsu</option>
+                    <option>fiak</option>
+                    <option>subali</option>
+                </select>
+                <input class="max-speed" type="number" placeholder="Enter max. speed">
+                <div class="actions">
+                    <button type="button" onclick="onCloseCarEdit()">Cancel</button>
+                    <button>Save</button>
+                </div>
+            </form>
+        </dialog>
+        
+        <div class="user-msg"></div>
+
+		<script src="js/services/util.service.js"></script>
+		<script src="js/services/storage.service.js"></script>
+		<script src="js/services/car.service.js"></script>
+		<script src="js/car.controller.js"></script>
+	</body>
+</html>

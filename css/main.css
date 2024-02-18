@@ -1,0 +1,187 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 0 40px;
+	background-color: lightsteelblue;
+	overflow-x: hidden;
+
+	font-family: Arial, Helvetica, sans-serif;
+	color: whitesmoke;
+}
+
+button {
+	color: whitesmoke;
+	border: 0;
+	border-radius: 0.2em;
+	background-color: rgb(99, 160, 190);
+	padding: 6px 10px;
+	margin: 2px;
+	cursor: pointer;
+}
+
+button:hover {
+	color: deeppink;
+}
+
+.actions {
+	display: flex;
+	justify-content: space-between;
+}
+
+.cars-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+
+	margin-block: 1em;
+}
+
+.car-preview {
+	position: relative;
+
+	flex-basis: 200px;
+	flex-grow: 1;
+
+	padding: 5px;
+	background-color: white;
+	border: 1px solid darkgray;
+	border-radius: 0.2em;
+
+	color: #222;
+	text-align: center;
+}
+
+.car-preview .btn-remove {
+	position: absolute;
+	top: 0.5em;
+	right: 0.5em;
+}
+
+.car-preview img {
+	margin-block-start: 1em;
+	max-width: 80%;
+}
+
+.car-preview h2 {
+	text-transform: capitalize;
+}
+
+.car-preview p span {
+	color: tomato;
+	font-family: monospace;
+	font-size: 2em;
+}
+
+.car-filter {
+	background-color: rgb(96, 122, 158);
+	padding: 20px;
+	margin: 20px 0;
+}
+
+.car-filter fieldset {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.filter-by select,
+.sort-by select {
+	margin-inline-end: 2em;
+}
+
+.filter-by select {
+	text-transform: capitalize;
+}
+
+.modal {
+	width: 400px;
+	padding: 10px;
+
+    padding: 2em;
+    border: 1px solid lightgray;
+    transition: opacity 0.5s;
+}
+
+@starting-style {
+    .modal {
+        opacity: 0;
+    }
+}
+
+.modal img {
+    float: left;
+    width: 50%;
+    margin-inline-end: .5em;
+}
+
+.modal h3 {
+	color: pink;
+	text-transform: capitalize;
+}
+
+.modal h4 span {
+	color: pink;
+}
+
+.modal > p {
+	text-align: left;
+}
+
+.user-msg {
+	position: fixed;
+	bottom: -100px;
+	right: 10px;
+	background-color: #111;
+	padding: 10px;
+}
+
+.user-msg.open {
+	bottom: 10px;
+	transition: bottom 0.5s;
+}
+
+.highlite {
+	background-color: plum;
+}
+
+dialog.car-edit-modal {
+    padding: 2em;
+    background: linear-gradient(to bottom, #eee, #fff);
+    border: 1px solid lightgray
+}
+
+dialog.car-edit-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
+}
+
+dialog.car-edit-modal form > h2 {
+    margin-block-end: .5em;
+}
+
+dialog.car-edit-modal form > img {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+
+    width: 130px;
+}
+
+dialog.car-edit-modal form > input, 
+dialog.car-edit-modal form > select {
+    align-self: start;
+    height: 1.6em;
+    border: 1px solid lightgray;
+}
+
+dialog.car-edit-modal form .actions {
+    margin-block-start: 1em;
+}
+
+dialog *:focus {
+    outline: 1px solid gray;
+}
