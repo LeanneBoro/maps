@@ -10,6 +10,12 @@ function getCars(options) {
     const cars = gCars.filter(car => 
         car.vendor.includes(options.filterBy.txt) &&
         car.maxSpeed >= options.filterBy.minSpeed)
+
+    if(options.sortBy.maxSpeed) { // sortBy : { vendor: -1 }
+        cars.sort((car1, car2) => (car1.maxSpeed - car2.maxSpeed) * options.sortBy.maxSpeed)
+    } else if(options.sortBy.vendor) {
+        cars.sort((car1, car2) => (car1.vendor.localeCompare(car2.vendor)) * options.sortBy.vendor)
+    }
     return cars
 }
 

@@ -139,7 +139,19 @@ function onSetFilterBy() {
 }
 
 function onSetSortBy() {
-    console.log('Sort set.')
+    const elSortBy = document.querySelector('.sort-by select')
+    const elDir = document.querySelector('.sort-by input')
+
+    const dir = elDir.checked ? -1 : 1
+
+    gQueryOptions.sortBy = {}
+    
+    if(elSortBy.value === 'vendor') {
+        gQueryOptions.sortBy = { vendor: dir }
+    } else if(elSortBy.value === 'maxSpeed') {
+        gQueryOptions.sortBy = { maxSpeed: dir }
+    }
+    renderCars()
 }
 
 function onNextPage() {
