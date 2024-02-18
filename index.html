@@ -16,7 +16,7 @@
                 <legend>Filter & Sorting</legend>
 
                 <div class="filter-by">
-                    <select class="vendor-list" onchange="onSetFilterBy({vendor: this.value})">
+                    <select class="vendor-list" onchange="onSetFilterBy()">
                         <option value="">Select vendor</option>
                         <option>audu</option>
                         <option>fiak</option>
@@ -27,7 +27,7 @@
                     <label>
                         <span>Min Speed:</span>
                         <input type="range" min="0" max="300" value="50" 
-                               onchange="this.title=this.value;onSetFilterBy({minSpeed: +this.value})" />
+                               onchange="this.title=this.value;onSetFilterBy()" />
                     </label>
                 </div>
                 

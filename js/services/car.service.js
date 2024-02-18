@@ -6,8 +6,11 @@ var gCars
 
 _createCars()
 
-function getCars(options = {}) {
-    return gCars
+function getCars(options) {
+    const cars = gCars.filter(car => 
+        car.vendor.includes(options.filterBy.txt) &&
+        car.maxSpeed >= options.filterBy.minSpeed)
+    return cars
 }
 
 function removeCar(carId) {
@@ -31,7 +34,7 @@ function getCarById(carId) {
 
 function updateCar(carId, vendor, maxSpeed) {
     const car = gCars.find(car => car.id === carId)
-    
+
     car.vendor = vendor
     car.maxSpeed = maxSpeed
 
