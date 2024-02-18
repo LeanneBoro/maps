@@ -8,6 +8,7 @@ const gQueryOptions = {
 var gCarToEdit = null
 
 function onInit() {
+    readQueryParams()
     renderCars()
 }
 
@@ -30,6 +31,7 @@ function renderCars() {
         </article> 
     `)
     document.querySelector('.cars-container').innerHTML = strHtmls.join('')
+    setQueryParams()
 }
 
 // CRUD
@@ -179,7 +181,7 @@ function readQueryParams() {
 
     if(queryParams.get('sortBy')) {
         const prop = queryParams.get('sortBy')
-        const dir = queryParams.get('sortDir')
+        const dir = +queryParams.get('sortDir')
         gQueryOptions.sortBy[prop] = dir
     }
 
