@@ -41,6 +41,9 @@ function onRemoveCar(carId) {
 
 function onAddCar() {
     const elModal = document.querySelector('.car-edit-modal')
+    const elHeading = elModal.querySelector('h2')
+
+    elHeading.innerText = 'Add Car'
     elModal.showModal()
 }
 
@@ -91,7 +94,18 @@ function onSelectVendor(elVendor) {
 }
 
 function onCloseCarEdit() {
+    resetCarEditModal()
     document.querySelector('.car-edit-modal').close()
+}
+
+function resetCarEditModal() {
+    const elForm = document.querySelector('.car-edit-modal form')
+    const elImg = elForm.querySelector('img')
+
+    elForm.reset()
+    elImg.src = ''
+
+    gCarToEdit = null
 }
 
 // Details modal
