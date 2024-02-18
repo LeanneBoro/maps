@@ -7,16 +7,27 @@ var gCars
 _createCars()
 
 function getCars(options) {
-    const cars = gCars.filter(car => 
-        car.vendor.includes(options.filterBy.txt) &&
-        car.maxSpeed >= options.filterBy.minSpeed)
+    const cars = _filterCars(options.filterBy)
 
     if(options.sortBy.maxSpeed) { // sortBy : { vendor: -1 }
         cars.sort((car1, car2) => (car1.maxSpeed - car2.maxSpeed) * options.sortBy.maxSpeed)
     } else if(options.sortBy.vendor) {
         cars.sort((car1, car2) => (car1.vendor.localeCompare(car2.vendor)) * options.sortBy.vendor)
     }
-    return cars
+
+    const startIdx = options.page.idx * options.page.size
+    return cars.slice(startIdx, startIdx + options.page.size)
+}
+
+function getTotalPageCount(options) {
+    const cars = _filterCars(options.filterBy)
+    return Math.ceil(cars.length / options.page.size)
+}
+
+function _filterCars(filterBy) {
+    return gCars.filter(car => 
+        car.vendor.includes(filterBy.txt) &&
+        car.maxSpeed >= filterBy.minSpeed)
 }
 
 function removeCar(carId) {

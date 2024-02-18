@@ -3,6 +3,7 @@
 const gQueryOptions = {
     filterBy: { txt: '', minSpeed: 0 },
     sortBy: {},
+    page: { idx: 0, size: 3 }
 }
 var gCarToEdit = null
 
@@ -135,6 +136,7 @@ function onSetFilterBy() {
     gQueryOptions.filterBy.txt = elVendor.value
     gQueryOptions.filterBy.minSpeed = elMinSpeed.value
 
+    gQueryOptions.page.idx = 0
     renderCars()
 }
 
@@ -145,17 +147,25 @@ function onSetSortBy() {
     const dir = elDir.checked ? -1 : 1
 
     gQueryOptions.sortBy = {}
-    
+
     if(elSortBy.value === 'vendor') {
         gQueryOptions.sortBy = { vendor: dir }
     } else if(elSortBy.value === 'maxSpeed') {
         gQueryOptions.sortBy = { maxSpeed: dir }
     }
+    gQueryOptions.page.idx = 0
     renderCars()
 }
 
 function onNextPage() {
-    console.log('Getting next page...')
+    const totalPageCount = getTotalPageCount(gQueryOptions)
+
+    if(gQueryOptions.page.idx < totalPageCount - 1){
+        gQueryOptions.page.idx++
+    } else {
+        gQueryOptions.page.idx = 0
+    }
+    renderCars()
 }
 
 // Query Params
